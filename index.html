@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>কৃষি বাংলাদেশ — Agriculture BD</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;color:#1a1a1a;font-size:14px;background:#fff}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;border-bottom:1px solid #e5e7eb;background:#fff;position:sticky;top:0;z-index:100;gap:8px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-bn{font-size:15px;font-weight:600;color:#1A4D00}
+.logo-en{font-size:9px;color:#639922;letter-spacing:.06em;text-transform:uppercase}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap}
+.nav-links a{font-size:11px;color:#6b7280;cursor:pointer;padding:4px 8px;border-radius:6px;transition:all .15s;text-decoration:none}
+.nav-links a:hover{background:#EAF3DE;color:#27500A}
+.nav-links a.active{background:#EAF3DE;color:#1A4D00;font-weight:600}
+
+.page{display:none}.page.active{display:block}
+
+.hero{background:linear-gradient(135deg,#EAF3DE 0%,#d4eba8 60%,#b8dc7a 100%);padding:0;overflow:hidden;display:grid;grid-template-columns:1fr auto;align-items:center;min-height:260px;border-bottom:1px solid #aed678}
+.hero-text{padding:40px 32px}
+.hero-badge{display:inline-block;background:#27500A22;color:#1A4D00;font-size:11px;padding:4px 12px;border-radius:20px;margin-bottom:14px;font-weight:600}
+.hero h1{font-size:28px;font-weight:600;color:#0F2E00;margin-bottom:10px;line-height:1.3}
+.hero p{font-size:13px;color:#2D5A0A;max-width:400px;line-height:1.7;margin-bottom:20px}
+.hero-btns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{padding:9px 20px;border-radius:8px;font-size:12px;cursor:pointer;border:none;font-family:inherit;font-weight:600}
+.btn-green{background:#27500A;color:#fff}
+.btn-outline{background:transparent;color:#27500A;border:2px solid #27500A}
+.btn-green:hover{background:#1A4D00}
+.btn-outline:hover{background:#EAF3DE}
+.hero-illustration{padding:20px 20px 0;align-self:flex-end;flex-shrink:0}
+
+.stats-bar{display:flex;justify-content:center;background:#fff;border-bottom:1px solid #e5e7eb;flex-wrap:wrap}
+.stat{padding:14px 22px;text-align:center;border-right:1px solid #e5e7eb}
+.stat:last-child{border-right:none}
+.stat-n{font-size:20px;font-weight:700;color:#27500A}
+.stat-l{font-size:10px;color:#6b7280;margin-top:2px}
+
+.sec{padding:32px 24px}
+.sec-bg{background:#f9fafb}
+.sec-title{font-size:19px;font-weight:700;margin-bottom:5px}
+.sec-sub{font-size:12px;color:#6b7280;margin-bottom:20px}
+.sec-center{text-align:center}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;transition:box-shadow .15s}
+.card:hover{box-shadow:0 2px 12px #27500A18}
+.card h3{font-size:13px;font-weight:600;margin-bottom:5px}
+.card p{font-size:12px;color:#6b7280;line-height:1.6}
+.card-img{width:100%;height:80px;display:flex;align-items:center;justify-content:center;border-radius:8px;margin-bottom:12px}
+
+.svc-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;cursor:pointer;transition:all .15s}
+.svc-card:hover{border-color:#639922;box-shadow:0 2px 12px #27500A15}
+.svc-img{height:70px;display:flex;align-items:center;justify-content:center}
+.svc-body{padding:10px 12px}
+.svc-body h3{font-size:12px;font-weight:600;margin-bottom:3px}
+.svc-body p{font-size:11px;color:#6b7280;line-height:1.5}
+
+.crop-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;border-top:3px solid #639922}
+.crop-ill{height:80px;display:flex;align-items:center;justify-content:center}
+.crop-body{padding:12px}
+.crop-body h3{font-size:13px;font-weight:600;margin-bottom:5px}
+.crop-body p{font-size:11px;color:#6b7280;line-height:1.5}
+
+.tag{display:inline-block;background:#EAF3DE;color:#27500A;font-size:10px;padding:2px 7px;border-radius:6px;margin:2px 2px 0 0}
+
+.news-item{display:flex;gap:12px;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;margin-bottom:8px}
+.news-date{font-size:10px;color:#9ca3af;white-space:nowrap;min-width:52px;margin-top:2px}
+.news-title{font-size:13px;font-weight:600;margin-bottom:3px}
+.news-desc{font-size:11px;color:#6b7280;line-height:1.5}
+
+.price-table{width:100%;border-collapse:collapse}
+.price-table th{font-size:11px;color:#6b7280;text-align:left;padding:8px 10px;border-bottom:1px solid #e5e7eb;font-weight:600}
+.price-table td{font-size:12px;padding:9px 10px;border-bottom:1px solid #e5e7eb}
+.up{color:#1A6B00;font-weight:700}.down{color:#8B0000;font-weight:700}
+
+.tip-card{background:#fff;border:1px solid #e5e7eb;border-left:3px solid #639922;border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:8px}
+.tip-card h4{font-size:12px;font-weight:600;margin-bottom:4px}
+.tip-card p{font-size:11px;color:#6b7280;line-height:1.6}
+
+.scheme-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden}
+.scheme-img{height:64px;display:flex;align-items:center;justify-content:center}
+.scheme-body{padding:12px}
+.scheme-body h3{font-size:13px;font-weight:600;margin-bottom:5px}
+.scheme-body p{font-size:11px;color:#6b7280;line-height:1.5;margin-bottom:8px}
+.scheme-badge{font-size:10px;background:#EAF3DE;color:#1A4D00;padding:3px 8px;border-radius:6px;display:inline-block;font-weight:600}
+
+.faq-item{border:1px solid #e5e7eb;border-radius:10px;margin-bottom:7px;overflow:hidden}
+.faq-q{padding:12px 14px;font-size:12px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:#fff;user-select:none}
+.faq-a{padding:0 14px 12px;font-size:11px;color:#6b7280;line-height:1.6;display:none}
+.faq-a.open{display:block}
+
+.weather-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden}
+.weather-top{padding:16px;text-align:center}
+.weather-temp{font-size:32px;font-weight:700;color:#27500A}
+.weather-city{font-size:12px;color:#6b7280;margin-bottom:4px}
+.weather-days{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #e5e7eb}
+.w-day{padding:10px 6px;text-align:center;border-right:1px solid #e5e7eb}
+.w-day:last-child{border-right:none}
+.w-day-name{font-size:10px;color:#6b7280}
+.w-day-temp{font-size:13px;font-weight:700;margin-top:3px}
+.w-emoji{font-size:18px;margin:4px 0}
+
+.contact-form{display:flex;flex-direction:column;gap:9px}
+.contact-form input,.contact-form textarea,.contact-form select{width:100%;padding:9px 11px;border:1px solid #d1d5db;border-radius:8px;font-size:12px;font-family:inherit;background:#fff;color:#1a1a1a}
+.contact-form textarea{height:80px;resize:none}
+.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus{outline:2px solid #639922;border-color:#639922}
+
+.soil-bar{margin-bottom:10px}
+.soil-label{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px}
+.soil-track{height:7px;background:#f3f4f6;border-radius:4px;overflow:hidden}
+.soil-fill{height:100%;border-radius:4px;background:#639922;transition:width .5s}
+
+.glossary-item{padding:11px 14px;border-bottom:1px solid #e5e7eb}
+.glossary-item:last-child{border-bottom:none}
+.glossary-term{font-size:12px;font-weight:700;color:#1A4D00}
+.glossary-def{font-size:11px;color:#6b7280;margin-top:2px;line-height:1.5}
+
+.video-card{background:#f9fafb;border-radius:10px;overflow:hidden;border:1px solid #e5e7eb}
+.video-thumb{height:80px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.video-thumb:hover{opacity:.85}
+.video-info{padding:10px}
+.video-title{font-size:12px;font-weight:600;margin-bottom:3px}
+.video-meta{font-size:10px;color:#6b7280}
+
+.district-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:7px}
+.district-card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:10px;text-align:center;cursor:pointer;transition:all .15s}
+.district-card:hover{border-color:#639922;background:#EAF3DE}
+.district-name{font-size:11px;font-weight:600}
+.district-crop{font-size:10px;color:#6b7280;margin-top:2px}
+
+.research-card{display:flex;gap:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:14px;margin-bottom:8px;align-items:flex-start}
+.research-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.research-title{font-size:12px;font-weight:600;margin-bottom:3px}
+.research-desc{font-size:11px;color:#6b7280;line-height:1.5}
+
+footer{background:#0F2E00;color:#97C459;padding:24px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:20px;max-width:960px;margin:0 auto}
+.footer-logo{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.footer-brand{font-size:14px;font-weight:700;color:#C0DD97}
+.footer-desc{font-size:11px;color:#5C9626;line-height:1.6}
+.footer-col h4{font-size:10px;font-weight:700;color:#97C459;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+.footer-col a{display:block;font-size:11px;color:#5C9626;text-decoration:none;margin-bottom:4px;cursor:pointer}
+.footer-col a:hover{color:#C0DD97}
+.footer-bottom{text-align:center;font-size:10px;color:#3B6D11;border-top:1px solid #2A5200;padding-top:14px;margin-top:16px}
+
+@media(max-width:700px){
+  .hero{grid-template-columns:1fr}.hero-illustration{display:none}
+  .grid2{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:22px}.sec{padding:24px 14px}
+  nav{padding:10px 14px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo" onclick="showPage('home')">
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="36" height="36" rx="8" fill="#1A4D00"/>
+      <path d="M18 6 C10 10 8 20 12 28 C16 20 24 16 28 10 C24 8 20 6 18 6Z" fill="#7DC226"/>
+      <path d="M18 6 C18 14 16 22 12 28" stroke="#A8E040" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M12 28 C10 30 9 32 10 33" stroke="#A8E040" stroke-width="1" stroke-linecap="round"/>
+      <path d="M12 28 C13 31 14 33 13 34" stroke="#A8E040" stroke-width="1" stroke-linecap="round"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-bn">কৃষি বাংলাদেশ</span>
+      <span class="logo-en">Agriculture BD</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a onclick="showPage('home')" id="l-home" class="active">হোম</a>
+    <a onclick="showPage('crops')" id="l-crops">ফসল</a>
+    <a onclick="showPage('weather')" id="l-weather">আবহাওয়া</a>
+    <a onclick="showPage('market')" id="l-market">বাজারদর</a>
+    <a onclick="showPage('tips')" id="l-tips">পরামর্শ</a>
+    <a onclick="showPage('schemes')" id="l-schemes">সরকারি সুবিধা</a>
+    <a onclick="showPage('research')" id="l-research">গবেষণা</a>
+    <a onclick="showPage('videos')" id="l-videos">ভিডিও</a>
+    <a onclick="showPage('districts')" id="l-districts">জেলা</a>
+    <a onclick="showPage('soil')" id="l-soil">মাটি</a>
+    <a onclick="showPage('faq')" id="l-faq">প্রশ্নোত্তর</a>
+    <a onclick="showPage('glossary')" id="l-glossary">অভিধান</a>
+    <a onclick="showPage('news')" id="l-news">সংবাদ</a>
+    <a onclick="showPage('contact')" id="l-contact">যোগাযোগ</a>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-badge">🌿 বাংলাদেশের কৃষি তথ্য পোর্টাল</div>
+      <h1>কৃষকের পাশে<br>সবসময় আমরা</h1>
+      <p>আধুনিক তথ্য, বিশেষজ্ঞ পরামর্শ ও সরকারি সুবিধা — এক জায়গায়।</p>
+      <div class="hero-btns">
+        <button class="btn btn-green" onclick="showPage('crops')">ফসল জানুন</button>
+        <button class="btn btn-outline" onclick="showPage('market')">আজকের বাজারদর</button>
+      </div>
+    </div>
+    <div class="hero-illustration">
+      <svg width="180" height="200" viewBox="0 0 180 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="145" cy="30" r="16" fill="#FFD84D" opacity=".85"/>
+        <line x1="145" y1="8" x2="145" y2="2" stroke="#FFD84D" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="145" y1="52" x2="145" y2="58" stroke="#FFD84D" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="123" y1="30" x2="117" y2="30" stroke="#FFD84D" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="167" y1="30" x2="173" y2="30" stroke="#FFD84D" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="129" y1="16" x2="125" y2="12" stroke="#FFD84D" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="161" y1="44" x2="165" y2="48" stroke="#FFD84D" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="161" y1="16" x2="165" y2="12" stroke="#FFD84D" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="129" y1="44" x2="125" y2="48" stroke="#FFD84D" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="90" cy="170" rx="85" ry="20" fill="#7DC226" opacity=".35"/>
+        <rect x="18" y="110" width="3" height="50" rx="1.5" fill="#3a7a00"/>
+        <path d="M20 110 C15 95 8 90 6 82 C12 84 18 90 20 98" fill="#5aaa00"/>
+        <path d="M20 115 C25 100 32 96 34 88 C28 90 22 96 20 104" fill="#7DC226"/>
+        <rect x="40" y="105" width="3" height="55" rx="1.5" fill="#3a7a00"/>
+        <path d="M41 105 C36 90 29 86 27 78 C33 80 39 86 41 94" fill="#5aaa00"/>
+        <path d="M43 108 C48 93 55 89 57 81 C51 83 45 89 43 97" fill="#7DC226"/>
+        <rect x="62" y="108" width="3" height="52" rx="1.5" fill="#3a7a00"/>
+        <path d="M63 108 C58 93 51 89 49 81 C55 83 61 89 63 97" fill="#5aaa00"/>
+        <path d="M65 110 C70 95 77 91 79 83 C73 85 67 91 65 99" fill="#7DC226"/>
+        <rect x="76" y="155" width="10" height="28" rx="5" fill="#5C3A1E"/>
+        <rect x="94" y="155" width="10" height="28" rx="5" fill="#5C3A1E"/>
+        <ellipse cx="81" cy="183" rx="8" ry="4" fill="#3B2510"/>
+        <ellipse cx="99" cy="183" rx="8" ry="4" fill="#3B2510"/>
+        <path d="M68 120 L72 160 L108 160 L112 120Z" fill="#1565C0"/>
+        <line x1="78" y1="120" x2="76" y2="160" stroke="#0D47A1" stroke-width="1" opacity=".5"/>
+        <line x1="88" y1="120" x2="88" y2="160" stroke="#0D47A1" stroke-width="1" opacity=".5"/>
+        <line x1="98" y1="120" x2="100" y2="160" stroke="#0D47A1" stroke-width="1" opacity=".5"/>
+        <line x1="68" y1="133" x2="112" y2="133" stroke="#0D47A1" stroke-width="1" opacity=".5"/>
+        <line x1="68" y1="146" x2="112" y2="146" stroke="#0D47A1" stroke-width="1" opacity=".5"/>
+        <path d="M72 90 L68 120 L112 120 L108 90 C104 86 96 84 90 84 C84 84 76 86 72 90Z" fill="#E65100"/>
+        <path d="M90 84 L84 95 L90 92 L96 95 L90 84Z" fill="#BF360C"/>
+        <path d="M72 95 C60 100 54 108 52 118" stroke="#C68642" stroke-width="9" stroke-linecap="round"/>
+        <line x1="52" y1="118" x2="40" y2="150" stroke="#5D4037" stroke-width="3" stroke-linecap="round"/>
+        <rect x="28" y="146" width="24" height="10" rx="3" fill="#9E9E9E" transform="rotate(-20 28 146)"/>
+        <path d="M108 95 C118 100 122 108 122 118" stroke="#C68642" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="90" cy="72" r="20" fill="#C68642"/>
+        <path d="M83 76 Q90 82 97 76" stroke="#5C3A1E" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <circle cx="84" cy="70" r="2.5" fill="#3B2510"/>
+        <circle cx="96" cy="70" r="2.5" fill="#3B2510"/>
+        <circle cx="85" cy="69.5" r="1" fill="white"/>
+        <circle cx="97" cy="69.5" r="1" fill="white"/>
+        <path d="M86 74 Q90 75 94 74" stroke="#5C3A1E" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <ellipse cx="90" cy="54" rx="26" ry="7" fill="#D4A843"/>
+        <path d="M64 54 Q90 42 116 54" fill="#C49A2A"/>
+        <ellipse cx="90" cy="55" rx="26" ry="5" fill="#D4A843" opacity=".5"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-n">১৬ কোটি+</div><div class="stat-l">জনসংখ্যা</div></div>
+    <div class="stat"><div class="stat-n">৪২%</div><div class="stat-l">কৃষিতে কর্মশক্তি</div></div>
+    <div class="stat"><div class="stat-n">১২%</div><div class="stat-l">জিডিপিতে কৃষি</div></div>
+    <div class="stat"><div class="stat-n">৮.১M হেক্টর</div><div class="stat-l">আবাদি জমি</div></div>
+    <div class="stat"><div class="stat-n">২২টি</div><div class="stat-l">বিশ্ব শীর্ষ উৎপাদন</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">দ্রুত সেবা</div>
+    <div class="sec-sub">আপনার প্রয়োজনীয় তথ্য এক ক্লিকে</div>
+    <div class="grid4">
+      <div class="svc-card" onclick="showPage('weather')"><div class="svc-img" style="background:#E3F2FD"><svg width="52" height="52" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="20" r="10" fill="#FFD84D"/><path d="M26 8V5M26 35v-3M14 20h-3M38 20h3M17 11l-2-2M35 11l2-2" stroke="#FFB300" stroke-width="2" stroke-linecap="round"/><path d="M12 34 Q18 26 26 30 Q32 22 40 28 Q44 28 44 34 Q44 40 40 40 H16 Q12 40 12 34Z" fill="#90CAF9"/><path d="M8 38 Q14 31 22 35 Q26 30 32 33 Q36 31 40 35 Q44 35 44 40 H12 Q8 40 8 38Z" fill="#fff"/></svg></div><div class="svc-body"><h3>আবহাওয়া পূর্বাভাস</h3><p>আজকের ও সাপ্তাহিক আবহাওয়া</p></div></div>
+      <div class="svc-card" onclick="showPage('market')"><div class="svc-img" style="background:#FFF8E1"><svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="8" y="28" width="8" height="16" rx="2" fill="#66BB6A"/><rect x="20" y="20" width="8" height="24" rx="2" fill="#FFA726"/><rect x="32" y="12" width="8" height="32" rx="2" fill="#42A5F5"/><path d="M8 28 L20 20 L32 12" stroke="#E53935" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 2"/><circle cx="8" cy="28" r="2.5" fill="#E53935"/><circle cx="20" cy="20" r="2.5" fill="#E53935"/><circle cx="32" cy="12" r="2.5" fill="#E53935"/></svg></div><div class="svc-body"><h3>বাজারদর</h3><p>সর্বশেষ ফসলের মূল্য তালিকা</p></div></div>
+      <div class="svc-card" onclick="showPage('tips')"><div class="svc-img" style="background:#F1F8E9"><svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="10" y="8" width="32" height="38" rx="4" fill="#A5D6A7"/><rect x="14" y="14" width="20" height="2.5" rx="1.2" fill="#2E7D32"/><rect x="14" y="20" width="16" height="2.5" rx="1.2" fill="#2E7D32"/><rect x="14" y="26" width="18" height="2.5" rx="1.2" fill="#2E7D32"/><rect x="14" y="32" width="12" height="2.5" rx="1.2" fill="#2E7D32"/><circle cx="38" cy="38" r="8" fill="#1A4D00"/><path d="M34 38 L37 41 L42 35" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="svc-body"><h3>চাষ পরামর্শ</h3><p>বিশেষজ্ঞ টিপস ও গাইড</p></div></div>
+      <div class="svc-card" onclick="showPage('schemes')"><div class="svc-img" style="background:#FCE4EC"><svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="8" y="20" width="36" height="26" rx="4" fill="#EF9A9A"/><rect x="14" y="26" width="10" height="14" rx="2" fill="#C62828"/><rect x="28" y="26" width="10" height="8" rx="2" fill="#B71C1C"/><path d="M6 22 L26 10 L46 22" stroke="#C62828" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="22" y="12" width="8" height="5" rx="1" fill="#E57373"/></svg></div><div class="svc-body"><h3>সরকারি সুবিধা</h3><p>ভর্তুকি ও ঋণ সহায়তা</p></div></div>
+      <div class="svc-card" onclick="showPage('soil')"><div class="svc-img" style="background:#EFEBE9"><svg width="52" height="52" viewBox="0 0 52 52" fill="none"><ellipse cx="26" cy="36" rx="18" ry="8" fill="#8D6E63"/><ellipse cx="26" cy="34" rx="18" ry="8" fill="#A1887F"/><path d="M26 10 L26 34" stroke="#4CAF50" stroke-width="2.5" stroke-linecap="round"/><path d="M26 22 C20 18 16 14 18 10 C20 14 24 18 26 22" fill="#66BB6A"/><path d="M26 18 C32 14 36 10 34 6 C32 10 28 14 26 18" fill="#43A047"/></svg></div><div class="svc-body"><h3>মাটি পরীক্ষা</h3><p>মাটির স্বাস্থ্য ও পুষ্টিমান</p></div></div>
+      <div class="svc-card" onclick="showPage('research')"><div class="svc-img" style="background:#E8EAF6"><svg width="52" height="52" viewBox="0 0 52 52" fill="none"><circle cx="22" cy="22" r="13" stroke="#5C6BC0" stroke-width="2.5" fill="#C5CAE9"/><line x1="31" y1="31" x2="44" y2="44" stroke="#3949AB" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="22" r="7" fill="#fff" stroke="#5C6BC0" stroke-width="1.5"/><circle cx="22" cy="22" r="3" fill="#5C6BC0"/></svg></div><div class="svc-body"><h3>গবেষণা</h3><p>নতুন জাত ও প্রযুক্তি</p></div></div>
+      <div class="svc-card" onclick="showPage('videos')"><div class="svc-img" style="background:#FCE4EC"><svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="6" y="14" width="32" height="24" rx="4" fill="#EF9A9A"/><polygon points="22,20 22,32 34,26" fill="#C62828"/><rect x="40" y="18" width="6" height="6" rx="2" fill="#E57373"/><rect x="40" y="28" width="6" height="6" rx="2" fill="#E57373"/></svg></div><div class="svc-body"><h3>ভিডিও টিউটোরিয়াল</h3><p>দেখে দেখে শিখুন</p></div></div>
+      <div class="svc-card" onclick="showPage('districts')"><div class="svc-img" style="background:#E8F5E9"><svg width="52" height="52" viewBox="0 0 52 52" fill="none"><path d="M26 6 C16 6 8 14 8 24 C8 36 26 48 26 48 C26 48 44 36 44 24 C44 14 36 6 26 6Z" fill="#A5D6A7" stroke="#2E7D32" stroke-width="2"/><circle cx="26" cy="24" r="6" fill="#2E7D32"/><circle cx="26" cy="24" r="3" fill="#fff"/></svg></div><div class="svc-body"><h3>জেলাভিত্তিক তথ্য</h3><p>আপনার জেলার কৃষি</p></div></div>
+    </div>
+  </div>
+
+  <div class="sec sec-bg">
+    <div class="sec-title sec-center">কেন আমাদের বেছে নেবেন?</div>
+    <div class="sec-sub sec-center">লক্ষাধিক কৃষক আমাদের উপর আস্থা রাখেন</div>
+    <div class="grid3">
+      <div class="card"><div class="card-img" style="background:#EAF3DE"><svg width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="20" fill="#A5D6A7"/><path d="M18 28 L25 35 L38 20" stroke="#1A4D00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>নির্ভরযোগ্য তথ্য</h3><p>সরকারি গবেষণা প্রতিষ্ঠান ও বিশেষজ্ঞদের কাছ থেকে যাচাইকৃত তথ্য।</p></div>
+      <div class="card"><div class="card-img" style="background:#E3F2FD"><svg width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="20" fill="#90CAF9"/><circle cx="28" cy="28" r="12" fill="none" stroke="#1565C0" stroke-width="2"/><line x1="28" y1="16" x2="28" y2="28" stroke="#1565C0" stroke-width="2.5" stroke-linecap="round"/><line x1="28" y1="28" x2="36" y2="28" stroke="#E53935" stroke-width="2.5" stroke-linecap="round"/></svg></div><h3>রিয়েল-টাইম আপডেট</h3><p>প্রতিদিন বাজারদর, আবহাওয়া ও কৃষি সংবাদ আপডেট হয়।</p></div>
+      <div class="card"><div class="card-img" style="background:#FFF8E1"><svg width="56" height="56" viewBox="0 0 56 56" fill="none"><rect x="14" y="10" width="28" height="40" rx="6" fill="#FFE082"/><rect x="18" y="16" width="8" height="8" rx="2" fill="#FFB300"/><rect x="30" y="16" width="8" height="2" rx="1" fill="#F57F17"/><rect x="30" y="20" width="8" height="2" rx="1" fill="#F57F17"/><rect x="18" y="28" width="20" height="2" rx="1" fill="#F57F17"/><rect x="18" y="32" width="16" height="2" rx="1" fill="#F57F17"/></svg></div><h3>মোবাইল বান্ধব</h3><p>যেকোনো ডিভাইস থেকে সহজে ব্যবহার করুন।</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- CROPS -->
+<div id="page-crops" class="page">
+  <div class="sec">
+    <div class="sec-title">ফসল তথ্য ভান্ডার</div>
+    <div class="sec-sub">বাংলাদেশের প্রধান ফসল ও চাষাবাদ পদ্ধতি</div>
+    <div class="grid3">
+      <div class="crop-card"><div class="crop-ill" style="background:#EAF3DE"><svg width="60" height="60" viewBox="0 0 60 60" fill="none"><rect x="28" y="12" width="3" height="38" rx="1.5" fill="#3a7a00"/><path d="M30 28 C22 22 18 14 20 8 C24 12 28 20 30 28" fill="#5aaa00"/><path d="M30 22 C38 16 42 8 40 4 C36 8 32 16 30 22" fill="#7DC226"/><ellipse cx="30" cy="15" rx="3" ry="5" fill="#DAA520" transform="rotate(-10 30 15)"/><ellipse cx="36" cy="12" rx="2.5" ry="4" fill="#DAA520" transform="rotate(10 36 12)"/><ellipse cx="24" cy="13" rx="2.5" ry="4" fill="#DAA520" transform="rotate(-15 24 13)"/></svg></div><div class="crop-body"><h3>ধান</h3><p>আউশ, আমন ও বোরো — তিন মৌসুমে চাষ। HYV ও হাইব্রিড জাতে ভালো ফলন।</p><div style="margin-top:8px"><span class="tag">বোরো: নভে–মার্চ</span><span class="tag">আমন: জুন–নভে</span></div></div></div>
+      <div class="crop-card" style="border-top-color:#BA7517"><div class="crop-ill" style="background:#FFF8E1"><svg width="60" height="60" viewBox="0 0 60 60" fill="none"><rect x="28" y="10" width="3" height="42" rx="1.5" fill="#5D4037"/><path d="M30 20 C20 22 14 30 16 38 C22 32 28 26 30 20" fill="#DAA520"/><path d="M30 26 C40 28 46 36 44 44 C38 38 32 32 30 26" fill="#F0C040"/></svg></div><div class="crop-body"><h3>পাট</h3><p>বাংলাদেশের সোনালী আঁশ। মার্চ-এপ্রিলে বোনা, জুলাই-আগস্টে কাটা।</p><div style="margin-top:8px"><span class="tag" style="background:#FFF3CD;color:#7D5A00">মার্চ–আগস্ট</span><span class="tag" style="background:#FFF3CD;color:#7D5A00">রপ্তানি ফসল</span></div></div></div>
+      <div class="crop-card" style="border-top-color:#795548"><div class="crop-ill" style="background:#EFEBE9"><svg width="60" height="60" viewBox="0 0 60 60" fill="none"><ellipse cx="30" cy="36" rx="14" ry="10" fill="#8D6E63"/><ellipse cx="30" cy="34" rx="14" ry="10" fill="#A1887F"/><ellipse cx="30" cy="32" rx="12" ry="8" fill="#BCAAA4"/><path d="M30 14 L30 32" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/><path d="M30 22 C24 18 20 14 22 10 C24 14 28 18 30 22" fill="#66BB6A"/></svg></div><div class="crop-body"><h3>আলু</h3><p>অক্টোবর-নভেম্বরে রোপণ। উৎপাদন ১০ মিলিয়ন টনেরও বেশি প্রতি বছর।</p><div style="margin-top:8px"><span class="tag">রবি মৌসুম</span><span class="tag">হিমাগার সংরক্ষণ</span></div></div></div>
+      <div class="crop-card" style="border-top-color:#0277BD"><div class="crop-ill" style="background:#E1F5FE"><svg width="60" height="60" viewBox="0 0 60 60" fill="none"><ellipse cx="30" cy="42" rx="20" ry="8" fill="#4FC3F7" opacity=".4"/><path d="M22 36 C20 28 24 20 30 18 C32 26 30 34 26 38 Z" fill="#039BE5"/><path d="M38 36 C40 28 36 20 30 18 C28 26 30 34 34 38 Z" fill="#0277BD"/><circle cx="30" cy="18" r="4" fill="#B3E5FC"/></svg></div><div class="crop-body"><h3>মাছ চাষ</h3><p>পুকুর ও ঘেরে রুই, কাতলা, তেলাপিয়া চাষ। বিশ্বে তৃতীয় মিঠাপানির মাছ উৎপাদক।</p><div style="margin-top:8px"><span class="tag" style="background:#E1F5FE;color:#01579B">মিঠাপানি</span><span class="tag" style="background:#E1F5FE;color:#01579B">লোনাপানি</span></div></div></div>
+      <div class="crop-card" style="border-top-color:#e53935"><div class="crop-ill" style="background:#FFEBEE"><svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="32" r="12" fill="#EF9A9A"/><circle cx="30" cy="32" r="8" fill="#E53935"/><path d="M30 10 L30 20" stroke="#388E3C" stroke-width="2.5" stroke-linecap="round"/><path d="M30 18 C24 14 22 10 24 6 C26 10 28 14 30 18" fill="#66BB6A"/></svg></div><div class="crop-body"><h3>টমেটো</h3><p>শীতকালীন প্রধান সবজি। রবি মৌসুমে সবচেয়ে ভালো ফলন পাওয়া যায়।</p><div style="margin-top:8px"><span class="tag" style="background:#FFEBEE;color:#B71C1C">অক্টো–মার্চ</span></div></div></div>
+      <div class="crop-card" style="border-top-color:#7B1FA2"><div class="crop-ill" style="background:#F3E5F5"><svg width="60" height="60" viewBox="0 0 60 60" fill="none"><path d="M30 14 L30 46" stroke="#4CAF50" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="24" cy="30" rx="10" ry="16" fill="#7B1FA2" transform="rotate(-15 24 30)"/><ellipse cx="24" cy="30" rx="7" ry="13" fill="#6A1B9A" opacity=".5" transform="rotate(-15 24 30)"/><path d="M30 22 C24 18 22 14 24 10 C26 14 28 18 30 22" fill="#66BB6A"/></svg></div><div class="crop-body"><h3>বেগুন</h3><p>সারাবছর চাষযোগ্য। বাংলাদেশে সবচেয়ে বেশি চাষ হওয়া সবজিগুলোর একটি।</p><div style="margin-top:8px"><span class="tag" style="background:#F3E5F5;color:#6A1B9A">সারাবছর</span></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WEATHER -->
+<div id="page-weather" class="page">
+  <div class="sec"><div class="sec-title">আবহাওয়া পূর্বাভাস</div><div class="sec-sub">চাষাবাদের জন্য প্রয়োজনীয় আবহাওয়া তথ্য</div>
+  <div class="grid3">
+    <div class="weather-card"><div class="weather-top"><div class="weather-city">ঢাকা</div><div class="weather-temp">৩২°C</div><div style="font-size:11px;color:#6b7280">আংশিক মেঘলা · আর্দ্রতা ৭৮%</div></div><div class="weather-days"><div class="w-day"><div class="w-day-name">আজ</div><div class="w-emoji">⛅</div><div class="w-day-temp">৩২°</div></div><div class="w-day"><div class="w-day-name">কাল</div><div class="w-emoji">🌧️</div><div class="w-day-temp">২৮°</div></div><div class="w-day"><div class="w-day-name">বুধ</div><div class="w-emoji">🌤️</div><div class="w-day-temp">৩০°</div></div><div class="w-day"><div class="w-day-name">বৃহ</div><div class="w-emoji">☀️</div><div class="w-day-temp">৩৩°</div></div></div></div>
+    <div class="weather-card"><div class="weather-top"><div class="weather-city">চট্টগ্রাম</div><div class="weather-temp">২৯°C</div><div style="font-size:11px;color:#6b7280">বৃষ্টিপাত সম্ভব · আর্দ্রতা ৮৫%</div></div><div class="weather-days"><div class="w-day"><div class="w-day-name">আজ</div><div class="w-emoji">🌧️</div><div class="w-day-temp">২৯°</div></div><div class="w-day"><div class="w-day-name">কাল</div><div class="w-emoji">⛅</div><div class="w-day-temp">৩০°</div></div><div class="w-day"><div class="w-day-name">বুধ</div><div class="w-emoji">🌤️</div><div class="w-day-temp">৩১°</div></div><div class="w-day"><div class="w-day-name">বৃহ</div><div class="w-emoji">☀️</div><div class="w-day-temp">৩২°</div></div></div></div>
+    <div class="weather-card"><div class="weather-top"><div class="weather-city">রাজশাহী</div><div class="weather-temp">৩৫°C</div><div style="font-size:11px;color:#6b7280">রোদেলা · আর্দ্রতা ৬২%</div></div><div class="weather-days"><div class="w-day"><div class="w-day-name">আজ</div><div class="w-emoji">☀️</div><div class="w-day-temp">৩৫°</div></div><div class="w-day"><div class="w-day-name">কাল</div><div class="w-emoji">☀️</div><div class="w-day-temp">৩৬°</div></div><div class="w-day"><div class="w-day-name">বুধ</div><div class="w-emoji">⛅</div><div class="w-day-temp">৩৩°</div></div><div class="w-day"><div class="w-day-name">বৃহ</div><div class="w-emoji">🌧️</div><div class="w-day-temp">২৯°</div></div></div></div>
+  </div></div>
+</div>
+
+<!-- MARKET -->
+<div id="page-market" class="page">
+  <div class="sec"><div class="sec-title">আজকের বাজারদর</div><div class="sec-sub">সারাদেশের গড় পাইকারি মূল্য</div>
+  <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden">
+  <table class="price-table"><thead><tr><th>ফসল</th><th>গতকাল (টাকা/কেজি)</th><th>আজকের মূল্য</th><th>পরিবর্তন</th><th>বাজার</th></tr></thead>
+  <tbody>
+    <tr><td>ধান (মিনিকেট)</td><td>৩২</td><td style="font-weight:700">৩৪</td><td class="up">▲ ৬.২%</td><td>ঢাকা</td></tr>
+    <tr><td>গম</td><td>৪০</td><td style="font-weight:700">৩৯</td><td class="down">▼ ২.৫%</td><td>রাজশাহী</td></tr>
+    <tr><td>আলু</td><td>২৫</td><td style="font-weight:700">২৬</td><td class="up">▲ ৪.০%</td><td>মুন্সীগঞ্জ</td></tr>
+    <tr><td>পেঁয়াজ</td><td>৫৫</td><td style="font-weight:700">৫২</td><td class="down">▼ ৫.৪%</td><td>ফরিদপুর</td></tr>
+    <tr><td>টমেটো</td><td>৩৮</td><td style="font-weight:700">৪২</td><td class="up">▲ ১০.৫%</td><td>যশোর</td></tr>
+    <tr><td>রুই মাছ</td><td>২৮০</td><td style="font-weight:700">২৯০</td><td class="up">▲ ৩.৬%</td><td>ময়মনসিংহ</td></tr>
+    <tr><td>সরিষা</td><td>৭০</td><td style="font-weight:700">৭২</td><td class="up">▲ ২.৯%</td><td>নাটোর</td></tr>
+    <tr><td>মসুর ডাল</td><td>১২০</td><td style="font-weight:700">১১৮</td><td class="down">▼ ১.৭%</td><td>ঢাকা</td></tr>
+  </tbody></table></div>
+  <div style="margin-top:10px;font-size:10px;color:#9ca3af">* তথ্য: কৃষি বিপণন অধিদফতর। প্রতিদিন সকাল ১০টায় আপডেট।</div></div>
+</div>
+
+<!-- TIPS -->
+<div id="page-tips" class="page">
+  <div class="sec"><div class="sec-title">চাষাবাদ পরামর্শ</div><div class="sec-sub">বিশেষজ্ঞদের মৌসুমভিত্তিক পরামর্শ</div>
+  <div class="grid2">
+    <div><div style="font-size:12px;font-weight:700;margin-bottom:10px;color:#1A4D00">🌾 ধান চাষ</div>
+      <div class="tip-card"><h4>সঠিক সার ব্যবস্থাপনা</h4><p>বোরো ধানে বিঘাপ্রতি ইউরিয়া ২৫ কেজি, TSP ১৫ কেজি ও MoP ১০ কেজি তিন ভাগে দিন।</p></div>
+      <div class="tip-card"><h4>রোগ-পোকা দমন</h4><p>বাদামি গাছফড়িং দেখা দিলে Monocrotophos ব্যবহার করুন। ব্লাস্ট রোগে Tricyclazole স্প্রে করুন।</p></div>
+      <div class="tip-card"><h4>AWD সেচ পদ্ধতি</h4><p>পর্যায়ক্রমে ভেজানো ও শুকানো পদ্ধতিতে ৩০% পানি সাশ্রয় হয়।</p></div>
+    </div>
+    <div><div style="font-size:12px;font-weight:700;margin-bottom:10px;color:#1A4D00">🥬 সবজি চাষ</div>
+      <div class="tip-card"><h4>বীজ শোধন</h4><p>বীজ বোনার আগে Vitavax দিয়ে শোধন করুন। মাটিবাহিত রোগ থেকে চারা রক্ষা পাবে।</p></div>
+      <div class="tip-card"><h4>জৈব সার</h4><p>রাসায়নিক সারের পাশাপাশি কম্পোস্ট ও ভার্মিকম্পোস্ট ব্যবহার করুন।</p></div>
+      <div class="tip-card"><h4>মালচিং কৌশল</h4><p>খড় বা কালো পলিথিন দিয়ে মালচিং করলে আগাছা কম হয়, আর্দ্রতা ধরে রাখে।</p></div>
+    </div>
+  </div></div>
+</div>
+
+<!-- SCHEMES -->
+<div id="page-schemes" class="page">
+  <div class="sec"><div class="sec-title">সরকারি সুবিধা ও ভর্তুকি</div><div class="sec-sub">কৃষকদের জন্য সরকারি প্রণোদনা ও আর্থিক সহায়তা</div>
+  <div class="grid3">
+    <div class="scheme-card"><div class="scheme-img" style="background:#E8F5E9"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="6" y="14" width="32" height="22" rx="3" fill="#A5D6A7"/><rect x="10" y="18" width="8" height="12" rx="2" fill="#2E7D32"/><rect x="22" y="20" width="10" height="8" rx="2" fill="#1B5E20"/><path d="M4 16 L22 8 L40 16" stroke="#2E7D32" stroke-width="2" stroke-linecap="round"/></svg></div><div class="scheme-body"><h3>কৃষি প্রণোদনা প্যাকেজ</h3><p>প্রাকৃতিক দুর্যোগে ক্ষতিগ্রস্ত কৃষকদের বিনামূল্যে বীজ, সার ও নগদ সহায়তা।</p><span class="scheme-badge">উপজেলা কৃষি অফিস</span></div></div>
+    <div class="scheme-card"><div class="scheme-img" style="background:#FFF8E1"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="8" y="12" width="28" height="20" rx="3" fill="#FFE082"/><rect x="12" y="16" width="12" height="3" rx="1" fill="#F57F17"/><circle cx="32" cy="32" r="8" fill="#43A047"/><path d="M28 32 L31 35 L36 28" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="scheme-body"><h3>কৃষি ঋণ ৪% সুদে</h3><p>সর্বোচ্চ ২ লক্ষ টাকা জামানতবিহীন ঋণ। সময়মতো পরিশোধে সুদ মওকুফ।</p><span class="scheme-badge">নিকটস্থ ব্যাংক</span></div></div>
+    <div class="scheme-card"><div class="scheme-img" style="background:#EDE7F6"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"><ellipse cx="22" cy="28" rx="14" ry="6" fill="#CE93D8"/><ellipse cx="22" cy="26" rx="14" ry="6" fill="#BA68C8"/><path d="M22 10 L22 24" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/><path d="M22 18 C17 14 15 10 17 6 C19 10 21 14 22 18" fill="#66BB6A"/></svg></div><div class="scheme-body"><h3>সার ভর্তুকি</h3><p>BADC অনুমোদিত ডিলারের মাধ্যমে ভর্তুকি মূল্যে ইউরিয়া, TSP, DAP পাওয়া যায়।</p><span class="scheme-badge">স্থানীয় BADC ডিলার</span></div></div>
+    <div class="scheme-card"><div class="scheme-img" style="background:#E3F2FD"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="8" y="20" width="22" height="14" rx="3" fill="#90CAF9"/><ellipse cx="14" cy="34" rx="5" ry="3" fill="#1565C0"/><ellipse cx="26" cy="34" rx="5" ry="3" fill="#1565C0"/></svg></div><div class="scheme-body"><h3>কৃষি যন্ত্রপাতি ভর্তুকি</h3><p>কম্বাইন হার্ভেস্টার, পাওয়ার টিলার ৫০-৭০% ভর্তুকিতে পাওয়া যায়।</p><span class="scheme-badge">DAE অফিস</span></div></div>
+    <div class="scheme-card"><div class="scheme-img" style="background:#F1F8E9"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="8" y="10" width="28" height="28" rx="4" fill="#C8E6C9"/><path d="M14 24 L20 30 L30 18" stroke="#2E7D32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="scheme-body"><h3>কৃষক কার্ড</h3><p>জাতীয় কৃষক ডাটাবেসে নিবন্ধন করুন। কার্ডের মাধ্যমে সব সুবিধা সহজে পাবেন।</p><span class="scheme-badge">উপজেলা কৃষি অফিস</span></div></div>
+    <div class="scheme-card"><div class="scheme-img" style="background:#FCE4EC"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"><path d="M22 8 C12 8 6 16 8 24 C10 32 18 38 22 38 C26 38 34 32 36 24 C38 16 32 8 22 8Z" fill="#F48FB1"/><path d="M22 14 C18 18 16 24 18 30 C20 24 22 18 22 14Z" fill="#E91E63"/></svg></div><div class="scheme-body"><h3>ফসল বিমা</h3><p>প্রাকৃতিক দুর্যোগে ফসল নষ্ট হলে বিমার মাধ্যমে ক্ষতিপূরণ পাওয়া যায়।</p><span class="scheme-badge">Sadharan Bima</span></div></div>
+  </div></div>
+</div>
+
+<!-- RESEARCH -->
+<div id="page-research" class="page">
+  <div class="sec"><div class="sec-title">কৃষি গবেষণা ও উদ্ভাবন</div><div class="sec-sub">বাংলাদেশের কৃষি গবেষণার সর্বশেষ অর্জন</div>
+  <div class="research-card"><div class="research-icon" style="background:#EAF3DE"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="12" y="2" width="2" height="20" rx="1" fill="#3a7a00"/><path d="M13 10 C9 8 7 4 8 1 C10 4 12 8 13 10" fill="#7DC226"/><path d="M13 8 C17 6 19 2 18 0 C16 3 14 7 13 8" fill="#5aaa00"/></svg></div><div><div class="research-title">BRRI dhan102 — লবণ ও বন্যা সহনশীল ধান</div><div class="research-desc">বাংলাদেশ ধান গবেষণা ইনস্টিটিউট উপকূলীয় অঞ্চলের জন্য নতুন জাত উদ্ভাবন করেছে। হেক্টরপ্রতি ৬-৭ টন ফলন সম্ভব।</div></div></div>
+  <div class="research-card"><div class="research-icon" style="background:#E8EAF6"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="11" cy="11" r="7" stroke="#5C6BC0" stroke-width="1.5" fill="#C5CAE9"/><line x1="16" y1="16" x2="24" y2="24" stroke="#3949AB" stroke-width="2" stroke-linecap="round"/></svg></div><div><div class="research-title">BARI উদ্ভাবিত খরা-সহনশীল গম জাত</div><div class="research-desc">রাজশাহী অঞ্চলের জন্য কম পানিতে চাষযোগ্য গম উদ্ভাবন। স্বাভাবিক জাতের চেয়ে ২০% কম পানি লাগে।</div></div></div>
+  <div class="research-card"><div class="research-icon" style="background:#E1F5FE"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 4 C8 6 6 12 8 18 C10 12 14 8 13 4Z" fill="#039BE5"/><path d="M13 4 C18 6 20 12 18 18 C16 12 12 8 13 4Z" fill="#0277BD"/></svg></div><div><div class="research-title">বায়োফ্লক মাছ চাষ প্রযুক্তি</div><div class="research-desc">কম জায়গায় বেশি মাছ উৎপাদনের আধুনিক পদ্ধতি। সাধারণ পুকুরের তুলনায় ৩ গুণ বেশি মাছ পাওয়া যায়।</div></div></div>
+  <div class="research-card"><div class="research-icon" style="background:#FFF8E1"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 2 L16 10 L24 10 L18 16 L20 24 L13 19 L6 24 L8 16 L2 10 L10 10Z" fill="#FFD84D"/></svg></div><div><div class="research-title">ড্রোন প্রযুক্তিতে কীটনাশক প্রয়োগ</div><div class="research-desc">BARI ও DAE যৌথভাবে ড্রোন দিয়ে কীটনাশক স্প্রে পরীক্ষামূলকভাবে চালু করেছে। শ্রম খরচ ৬০% কমে।</div></div></div>
+  </div>
+</div>
+
+<!-- VIDEOS -->
+<div id="page-videos" class="page">
+  <div class="sec"><div class="sec-title">ভিডিও টিউটোরিয়াল</div><div class="sec-sub">দেখে দেখে শিখুন</div>
+  <div class="grid4">
+    <div class="video-card"><div class="video-thumb" style="background:#EAF3DE"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" fill="#1A4D00" opacity=".15"/><polygon points="16,12 16,28 30,20" fill="#1A4D00"/></svg></div><div class="video-info"><div class="video-title">বোরো ধানের পরিচর্যা</div><div class="video-meta">১২:৩৫ · DAE</div></div></div>
+    <div class="video-card"><div class="video-thumb" style="background:#EFEBE9"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" fill="#795548" opacity=".15"/><polygon points="16,12 16,28 30,20" fill="#795548"/></svg></div><div class="video-info"><div class="video-title">আলু সংরক্ষণ পদ্ধতি</div><div class="video-meta">০৮:২০ · BARI</div></div></div>
+    <div class="video-card"><div class="video-thumb" style="background:#E1F5FE"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" fill="#0277BD" opacity=".15"/><polygon points="16,12 16,28 30,20" fill="#0277BD"/></svg></div><div class="video-info"><div class="video-title">পুকুরে মাছ চাষ গাইড</div><div class="video-meta">১৮:৪৫ · মৎস্য অধিদফতর</div></div></div>
+    <div class="video-card"><div class="video-thumb" style="background:#F1F8E9"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" fill="#2E7D32" opacity=".15"/><polygon points="16,12 16,28 30,20" fill="#2E7D32"/></svg></div><div class="video-info"><div class="video-title">জৈব সার তৈরির পদ্ধতি</div><div class="video-meta">০৯:১৫ · কৃষি বিশেষজ্ঞ</div></div></div>
+    <div class="video-card"><div class="video-thumb" style="background:#FCE4EC"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" fill="#C62828" opacity=".15"/><polygon points="16,12 16,28 30,20" fill="#C62828"/></svg></div><div class="video-info"><div class="video-title">গ্রীষ্মকালীন সবজি চাষ</div><div class="video-meta">১১:০০ · BARI</div></div></div>
+    <div class="video-card"><div class="video-thumb" style="background:#E8EAF6"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" fill="#3949AB" opacity=".15"/><polygon points="16,12 16,28 30,20" fill="#3949AB"/></svg></div><div class="video-info"><div class="video-title">ড্রোনে কীটনাশক ছিটানো</div><div class="video-meta">০৬:৩০ · DAE</div></div></div>
+    <div class="video-card"><div class="video-thumb" style="background:#E3F2FD"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" fill="#1565C0" opacity=".15"/><polygon points="16,12 16,28 30,20" fill="#1565C0"/></svg></div><div class="video-info"><div class="video-title">AWD সেচ পদ্ধতি</div><div class="video-meta">০৭:৫৫ · IRRI BD</div></div></div>
+    <div class="video-card"><div class="video-thumb" style="background:#FFF8E1"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" fill="#F57F17" opacity=".15"/><polygon points="16,12 16,28 30,20" fill="#F57F17"/></svg></div><div class="video-info"><div class="video-title">বীজ শোধন কেন করবেন</div><div class="video-meta">০৫:৪০ · কৃষি বিশেষজ্ঞ</div></div></div>
+  </div></div>
+</div>
+
+<!-- DISTRICTS -->
+<div id="page-districts" class="page">
+  <div class="sec"><div class="sec-title">জেলাভিত্তিক কৃষি তথ্য</div><div class="sec-sub">আপনার জেলায় কোন ফসল বেশি হয়</div>
+  <div class="district-grid">
+    <div class="district-card"><div class="district-name">ঢাকা</div><div class="district-crop">ধান, সবজি</div></div>
+    <div class="district-card"><div class="district-name">চট্টগ্রাম</div><div class="district-crop">চা, সবজি</div></div>
+    <div class="district-card"><div class="district-name">রাজশাহী</div><div class="district-crop">আম, গম</div></div>
+    <div class="district-card"><div class="district-name">সিলেট</div><div class="district-crop">চা, পান</div></div>
+    <div class="district-card"><div class="district-name">খুলনা</div><div class="district-crop">চিংড়ি, ধান</div></div>
+    <div class="district-card"><div class="district-name">বরিশাল</div><div class="district-crop">ধান, নারিকেল</div></div>
+    <div class="district-card"><div class="district-name">ময়মনসিংহ</div><div class="district-crop">ধান, মাছ</div></div>
+    <div class="district-card"><div class="district-name">রংপুর</div><div class="district-crop">আলু, ভুট্টা</div></div>
+    <div class="district-card"><div class="district-name">কুমিল্লা</div><div class="district-crop">সবজি, ধান</div></div>
+    <div class="district-card"><div class="district-name">যশোর</div><div class="district-crop">ফুল, সবজি</div></div>
+    <div class="district-card"><div class="district-name">নাটোর</div><div class="district-crop">সরিষা, ধান</div></div>
+    <div class="district-card"><div class="district-name">মুন্সীগঞ্জ</div><div class="district-crop">আলু, পাট</div></div>
+    <div class="district-card"><div class="district-name">নরসিংদী</div><div class="district-crop">কলা, সবজি</div></div>
+    <div class="district-card"><div class="district-name">ফরিদপুর</div><div class="district-crop">পেঁয়াজ, পাট</div></div>
+    <div class="district-card"><div class="district-name">দিনাজপুর</div><div class="district-crop">লিচু, ধান</div></div>
+    <div class="district-card"><div class="district-name">বগুড়া</div><div class="district-crop">সবজি, গম</div></div>
+  </div></div>
+</div>
+
+<!-- SOIL -->
+<div id="page-soil" class="page">
+  <div class="sec"><div class="sec-title">মাটি পরীক্ষা ও স্বাস্থ্য</div><div class="sec-sub">সঠিক সার ব্যবহারের জন্য মাটি পরীক্ষা জরুরি</div>
+  <div class="grid2">
+    <div class="card"><h3 style="margin-bottom:14px">বাংলাদেশের মাটির পুষ্টিমান (গড়)</h3>
+      <div class="soil-bar"><div class="soil-label"><span>নাইট্রোজেন (N)</span><span style="color:#639922">মাঝারি</span></div><div class="soil-track"><div class="soil-fill" style="width:55%"></div></div></div>
+      <div class="soil-bar"><div class="soil-label"><span>ফসফরাস (P)</span><span style="color:#8B0000">কম</span></div><div class="soil-track"><div class="soil-fill" style="width:30%;background:#8B0000"></div></div></div>
+      <div class="soil-bar"><div class="soil-label"><span>পটাশিয়াম (K)</span><span style="color:#639922">ভালো</span></div><div class="soil-track"><div class="soil-fill" style="width:70%"></div></div></div>
+      <div class="soil-bar"><div class="soil-label"><span>জৈব পদার্থ</span><span style="color:#BA7517">কিছুটা কম</span></div><div class="soil-track"><div class="soil-fill" style="width:40%;background:#BA7517"></div></div></div>
+      <div class="soil-bar"><div class="soil-label"><span>সালফার (S)</span><span style="color:#8B0000">অপ্রতুল</span></div><div class="soil-track"><div class="soil-fill" style="width:25%;background:#8B0000"></div></div></div>
+    </div>
+    <div class="card"><h3 style="margin-bottom:12px">মাটি পরীক্ষার ধাপ</h3>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:10px;align-items:flex-start"><div style="min-width:22px;height:22px;background:#EAF3DE;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#1A4D00">১</div><div><div style="font-size:12px;font-weight:600">নমুনা সংগ্রহ</div><div style="font-size:11px;color:#6b7280">জমির বিভিন্ন জায়গা থেকে ৬-৮ ইঞ্চি গভীরতায় মাটি নিন</div></div></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><div style="min-width:22px;height:22px;background:#EAF3DE;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#1A4D00">২</div><div><div style="font-size:12px;font-weight:600">মিশ্রণ ও শুকানো</div><div style="font-size:11px;color:#6b7280">নমুনা মিশিয়ে ছায়ায় শুকান, ৫০০ গ্রাম আলাদা করুন</div></div></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><div style="min-width:22px;height:22px;background:#EAF3DE;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#1A4D00">৩</div><div><div style="font-size:12px;font-weight:600">ল্যাবে পাঠান</div><div style="font-size:11px;color:#6b7280">নিকটস্থ SRDI বা উপজেলা কৃষি অফিসে জমা দিন</div></div></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><div style="min-width:22px;height:22px;background:#EAF3DE;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#1A4D00">৪</div><div><div style="font-size:12px;font-weight:600">ফলাফল ও পরামর্শ</div><div style="font-size:11px;color:#6b7280">১০-১৫ দিনে রিপোর্ট পাবেন, সে অনুযায়ী সার দিন</div></div></div>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<!-- FAQ -->
+<div id="page-faq" class="page">
+  <div class="sec"><div class="sec-title">সাধারণ প্রশ্নোত্তর</div><div class="sec-sub">কৃষকদের সবচেয়ে বেশি জিজ্ঞাসিত প্রশ্নের উত্তর</div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>বোরো ধানে কতটুকু সার দিতে হয়?</span><span>+</span></div><div class="faq-a">বোরো ধানে বিঘাপ্রতি ইউরিয়া ২৫-৩০ কেজি, TSP ১৫ কেজি, MoP ১০ কেজি, জিপসাম ১০ কেজি দিতে হয়। সার তিন ভাগে দিন — রোপণের আগে, কুশি অবস্থায় এবং থোড় বের হওয়ার আগে।</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>কৃষি ঋণের জন্য কোথায় যাবো?</span><span>+</span></div><div class="faq-a">নিকটস্থ সোনালী ব্যাংক, কৃষি ব্যাংক বা রাজশাহী কৃষি উন্নয়ন ব্যাংকে যান। সাথে জমির কাগজপত্র, NID কার্ড এবং কৃষক কার্ড নিন। ২ লক্ষ টাকা পর্যন্ত জামানত ছাড়াই ঋণ পাওয়া যায়।</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>ফসলে রোগ হলে কোথায় পরামর্শ নেবো?</span><span>+</span></div><div class="faq-a">উপজেলা কৃষি অফিসে যান। রোগাক্রান্ত ফসলের নমুনা নিয়ে যান। এছাড়া হেল্পলাইন ১৬১২৩ নম্বরে ফোন করতে পারেন।</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>সরকারি ভর্তুকিতে সার কিভাবে পাবো?</span><span>+</span></div><div class="faq-a">স্থানীয় BADC অনুমোদিত সার ডিলারের কাছে যান। জাতীয় পরিচয়পত্র দেখিয়ে সরকারি নির্ধারিত মূল্যে সার কিনুন।</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>কোন মৌসুমে কোন সবজি চাষ করবো?</span><span>+</span></div><div class="faq-a">শীতকালে: টমেটো, বাঁধাকপি, ফুলকপি, গাজর, শিম। গ্রীষ্মকালে: লাউ, কুমড়া, করলা, ঢেঁড়স। বর্ষায়: পটল, কচু, চালকুমড়া ভালো হয়।</div></div>
+  </div>
+</div>
+
+<!-- GLOSSARY -->
+<div id="page-glossary" class="page">
+  <div class="sec"><div class="sec-title">কৃষি অভিধান</div><div class="sec-sub">কৃষি বিষয়ক শব্দের সহজ বাংলা ব্যাখ্যা</div>
+  <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden">
+    <div class="glossary-item"><div class="glossary-term">AWD (Alternate Wetting and Drying)</div><div class="glossary-def">পর্যায়ক্রমে ভেজানো ও শুকানো — ধান ক্ষেতে পানি সাশ্রয়ের আধুনিক সেচ পদ্ধতি। ৩০% পানি সাশ্রয় হয়।</div></div>
+    <div class="glossary-item"><div class="glossary-term">HYV (High Yielding Variety)</div><div class="glossary-def">উচ্চ ফলনশীল জাত — দেশী জাতের চেয়ে ৩-৪ গুণ বেশি ফলন দেয়।</div></div>
+    <div class="glossary-item"><div class="glossary-term">মালচিং (Mulching)</div><div class="glossary-def">গাছের গোড়ায় খড় বা পলিথিন দিয়ে ঢাকার পদ্ধতি। আগাছা কমায়, আর্দ্রতা ধরে রাখে।</div></div>
+    <div class="glossary-item"><div class="glossary-term">ভার্মিকম্পোস্ট</div><div class="glossary-def">কেঁচো দিয়ে তৈরি জৈব সার। মাটির গুণমান উন্নত করে এবং ফসলের ফলন বাড়ায়।</div></div>
+    <div class="glossary-item"><div class="glossary-term">IPM (Integrated Pest Management)</div><div class="glossary-def">সমন্বিত বালাই ব্যবস্থাপনা — রাসায়নিক কম ব্যবহার করে পোকামাকড় দমন।</div></div>
+    <div class="glossary-item"><div class="glossary-term">pH মাত্রা</div><div class="glossary-def">মাটির অম্লত্ব-ক্ষারত্বের পরিমাপ। ৬.৫-৭.৫ pH সবচেয়ে ভালো চাষাবাদের জন্য।</div></div>
+    <div class="glossary-item"><div class="glossary-term">TSP (Triple Super Phosphate)</div><div class="glossary-def">ফসফেট সার — শিকড়ের বৃদ্ধি ও ফুল-ফল ধরতে সাহায্য করে।</div></div>
+  </div></div>
+</div>
+
+<!-- NEWS -->
+<div id="page-news" class="page">
+  <div class="sec"><div class="sec-title">কৃষি সংবাদ</div><div class="sec-sub">সর্বশেষ কৃষি খবর ও আপডেট</div>
+  <div class="news-item"><div class="news-date">এপ্রিল ১৩</div><div><div class="news-title">বোরো মৌসুমে রেকর্ড উৎপাদনের আশা</div><div class="news-desc">সারাদেশে বোরো ধানের বাম্পার ফলনের আশা করছে কৃষি মন্ত্রণালয়।</div><span class="tag">ধান</span></div></div>
+  <div class="news-item"><div class="news-date">এপ্রিল ১০</div><div><div class="news-title">ডিজিটাল কৃষি অ্যাপে ৫ লাখ কৃষক</div><div class="news-desc">সরকারের অ্যাপ ব্যবহার করে লাখ লাখ কৃষক আবহাওয়া ও পরামর্শ সেবা পাচ্ছেন।</div><span class="tag">প্রযুক্তি</span></div></div>
+  <div class="news-item"><div class="news-date">এপ্রিল ৭</div><div><div class="news-title">আলু রপ্তানিতে নতুন বাজার খুলছে</div><div class="news-desc">মালয়েশিয়া ও সিঙ্গাপুরে বাংলাদেশের আলু রপ্তানির সুযোগ তৈরি হয়েছে।</div><span class="tag">রপ্তানি</span></div></div>
+  <div class="news-item"><div class="news-date">এপ্রিল ৪</div><div><div class="news-title">BRRI-র নতুন লবণ সহনশীল ধান জাত</div><div class="news-desc">উপকূলীয় অঞ্চলের কৃষকদের জন্য নতুন ধানের জাত অনুমোদন পেয়েছে।</div><span class="tag">গবেষণা</span></div></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="page-contact" class="page">
+  <div class="sec"><div class="sec-title">যোগাযোগ করুন</div><div class="sec-sub">আমরা সাহায্য করতে প্রস্তুত</div>
+  <div class="grid2">
+    <div class="contact-form">
+      <input type="text" placeholder="আপনার নাম"/>
+      <input type="email" placeholder="ইমেইল / মোবাইল নম্বর"/>
+      <select><option>বিষয় নির্বাচন করুন</option><option>ফসল পরামর্শ</option><option>বাজারদর তথ্য</option><option>সরকারি সুবিধা</option><option>অন্যান্য</option></select>
+      <textarea placeholder="আপনার প্রশ্ন বা বার্তা..."></textarea>
+      <button class="btn btn-green" onclick="alert('বার্তা পাঠানো হয়েছে! ধন্যবাদ।')">বার্তা পাঠান</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="card"><div style="font-size:12px;font-weight:700;margin-bottom:3px">📍 ঠিকানা</div><div style="font-size:11px;color:#6b7280">কৃষি ভবন, খামারবাড়ি, ফার্মগেট, ঢাকা-১২১৫</div></div>
+      <div class="card"><div style="font-size:12px;font-weight:700;margin-bottom:3px">📞 হেল্পলাইন</div><div style="font-size:11px;color:#6b7280">১৬১২৩ (বিনামূল্যে) | +880 2-9130101</div></div>
+      <div class="card"><div style="font-size:12px;font-weight:700;margin-bottom:3px">✉️ ইমেইল</div><div style="font-size:11px;color:#6b7280">info@agriculturebd.gov.bd</div></div>
+      <div class="card"><div style="font-size:12px;font-weight:700;margin-bottom:3px">🕐 অফিস সময়</div><div style="font-size:11px;color:#6b7280">রবি–বৃহস্পতিবার, সকাল ৯টা – বিকাল ৫টা</div></div>
+    </div>
+  </div></div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="8" fill="#27500A"/><path d="M18 6 C10 10 8 20 12 28 C16 20 24 16 28 10 C24 8 20 6 18 6Z" fill="#7DC226"/><path d="M18 6 C18 14 16 22 12 28" stroke="#A8E040" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <div class="footer-brand">কৃষি বাংলাদেশ</div>
+      </div>
+      <div class="footer-desc">বাংলাদেশের কৃষকদের জন্য নির্ভরযোগ্য তথ্য ও সেবা।<br>হেল্পলাইন: ১৬১২৩</div>
+    </div>
+    <div class="footer-col"><h4>প্রধান পেজ</h4><a onclick="showPage('home')">হোম</a><a onclick="showPage('crops')">ফসল</a><a onclick="showPage('market')">বাজারদর</a><a onclick="showPage('news')">সংবাদ</a></div>
+    <div class="footer-col"><h4>সেবা</h4><a onclick="showPage('weather')">আবহাওয়া</a><a onclick="showPage('tips')">পরামর্শ</a><a onclick="showPage('schemes')">সরকারি সুবিধা</a><a onclick="showPage('soil')">মাটি পরীক্ষা</a></div>
+    <div class="footer-col"><h4>জানুন</h4><a onclick="showPage('research')">গবেষণা</a><a onclick="showPage('faq')">প্রশ্নোত্তর</a><a onclick="showPage('glossary')">অভিধান</a><a onclick="showPage('contact')">যোগাযোগ</a></div>
+  </div>
+  <div class="footer-bottom">© ২০২৬ কৃষি বাংলাদেশ · সর্বস্বত্ব সংরক্ষিত</div>
+</footer>
+
+<script>
+function showPage(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const pg=document.getElementById('page-'+n);
+  const lk=document.getElementById('l-'+n);
+  if(pg)pg.classList.add('active');
+  if(lk)lk.classList.add('active');
+  window.scrollTo(0,0);
+}
+function toggleFaq(el){
+  const a=el.nextElementSibling;
+  const open=a.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(x=>x.classList.remove('open'));
+  document.querySelectorAll('.faq-q span:last-child').forEach(x=>x.textContent='+');
+  if(!open){a.classList.add('open');el.querySelector('span:last-child').textContent='−';}
+}
+</script>
+</body>
+</html>
